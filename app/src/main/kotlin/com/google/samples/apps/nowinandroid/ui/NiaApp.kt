@@ -155,7 +155,6 @@ fun NiaApp(
                 Row(
                     Modifier
                         .fillMaxSize()
-                        .padding(padding)
                         .consumeWindowInsets(padding)
                         .windowInsetsPadding(
                             WindowInsets.safeDrawing.only(
@@ -171,6 +170,7 @@ fun NiaApp(
                             currentDestination = appState.currentDestination,
                             modifier = Modifier
                                 .testTag("NiaNavRail")
+                                .padding(padding)
                                 .safeDrawingPadding(),
                         )
                     }
