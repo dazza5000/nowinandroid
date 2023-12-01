@@ -18,6 +18,7 @@ package com.google.samples.apps.nowinandroid.feature.bookmarks
 
 import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -49,6 +50,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
@@ -87,8 +90,11 @@ internal fun BookmarksRoute(
 ) {
     val feedState by viewModel.feedUiState.collectAsStateWithLifecycle()
     Scaffold(
+        modifier = modifier,
         bottomBar = {
-            BottomAppBar {
+            BottomAppBar(
+                containerColor = Color.Blue
+            ) {
                 Text("foobar")
             }
         },

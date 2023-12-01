@@ -16,6 +16,7 @@
 
 package com.google.samples.apps.nowinandroid.feature.bookmarks.navigation
 
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
@@ -31,8 +32,13 @@ fun NavController.navigateToBookmarks(navOptions: NavOptions? = null) {
 fun NavGraphBuilder.bookmarksScreen(
     onTopicClick: (String) -> Unit,
     onShowSnackbar: suspend (String, String?) -> Boolean,
+    modifier: Modifier = Modifier,
 ) {
     composable(route = bookmarksRoute) {
-        BookmarksRoute(onTopicClick, onShowSnackbar)
+        BookmarksRoute(
+            onTopicClick,
+            onShowSnackbar,
+            modifier
+        )
     }
 }
