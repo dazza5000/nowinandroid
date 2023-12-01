@@ -98,10 +98,10 @@ class NiaAppState(
         }
 
     val shouldShowBottomBar: Boolean
-        get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact
+        get() = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Compact && navController.currentDestination?.route != bookmarksRoute
 
     val shouldShowNavRail: Boolean
-        get() = !shouldShowBottomBar
+        get() = !shouldShowBottomBar && navController.currentDestination?.route != bookmarksRoute
 
     val isOffline = networkMonitor.isOnline
         .map(Boolean::not)

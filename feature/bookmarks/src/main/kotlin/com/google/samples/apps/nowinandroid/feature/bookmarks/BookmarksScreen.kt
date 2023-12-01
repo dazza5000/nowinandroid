@@ -39,7 +39,9 @@ import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridItemSpan
 import androidx.compose.foundation.lazy.staggeredgrid.rememberLazyStaggeredGridState
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -84,17 +86,26 @@ internal fun BookmarksRoute(
     viewModel: BookmarksViewModel = hiltViewModel(),
 ) {
     val feedState by viewModel.feedUiState.collectAsStateWithLifecycle()
-    BookmarksScreen(
-        feedState = feedState,
-        onShowSnackbar = onShowSnackbar,
-        removeFromBookmarks = viewModel::removeFromSavedResources,
-        onNewsResourceViewed = { viewModel.setNewsResourceViewed(it, true) },
-        onTopicClick = onTopicClick,
-        modifier = modifier,
-        shouldDisplayUndoBookmark = viewModel.shouldDisplayUndoBookmark,
-        undoBookmarkRemoval = viewModel::undoBookmarkRemoval,
-        clearUndoState = viewModel::clearUndoState,
-    )
+    Scaffold(
+        bottomBar = {
+            BottomAppBar {
+                Text("foobar")
+            }
+        },
+    ) {
+            paddingValues ->
+        BookmarksScreen(
+            feedState = feedState,
+            onShowSnackbar = onShowSnackbar,
+            removeFromBookmarks = viewModel::removeFromSavedResources,
+            onNewsResourceViewed = { viewModel.setNewsResourceViewed(it, true) },
+            onTopicClick = onTopicClick,
+//            modifier = modifier.padding(paddingValues),
+            shouldDisplayUndoBookmark = viewModel.shouldDisplayUndoBookmark,
+            undoBookmarkRemoval = viewModel::undoBookmarkRemoval,
+            clearUndoState = viewModel::clearUndoState,
+        )
+    }
 }
 
 /**
